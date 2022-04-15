@@ -1,4 +1,4 @@
-module goanda
+module github.com/czechnorris/goanda
 
 go 1.18
 
