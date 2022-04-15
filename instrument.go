@@ -3,14 +3,15 @@ package goanda
 // Supporting OANDA docs - http://developer.oanda.com/rest-live-v20/instrument-ep/
 
 import (
+	"github.com/shopspring/decimal"
 	"time"
 )
 
 type Candle struct {
-	Open  float64 `json:"o,string"`
-	Close float64 `json:"c,string"`
-	Low   float64 `json:"l,string"`
-	High  float64 `json:"h,string"`
+	Open  decimal.Decimal `json:"o,string"`
+	Close decimal.Decimal `json:"c,string"`
+	Low   decimal.Decimal `json:"l,string"`
+	High  decimal.Decimal `json:"h,string"`
 }
 
 type Candles struct {
@@ -23,16 +24,16 @@ type Candles struct {
 type BidAskCandles struct {
 	Candles []struct {
 		Ask struct {
-			C float64 `json:"c,string"`
-			H float64 `json:"h,string"`
-			L float64 `json:"l,string"`
-			O float64 `json:"o,string"`
+			C decimal.Decimal `json:"c,string"`
+			H decimal.Decimal `json:"h,string"`
+			L decimal.Decimal `json:"l,string"`
+			O decimal.Decimal `json:"o,string"`
 		} `json:"ask"`
 		Bid struct {
-			C float64 `json:"c,string"`
-			H float64 `json:"h,string"`
-			L float64 `json:"l,string"`
-			O float64 `json:"o,string"`
+			C decimal.Decimal `json:"c,string"`
+			H decimal.Decimal `json:"h,string"`
+			L decimal.Decimal `json:"l,string"`
+			O decimal.Decimal `json:"o,string"`
 		} `json:"bid"`
 		Complete bool      `json:"complete"`
 		Time     time.Time `json:"time"`
@@ -66,17 +67,17 @@ type InstrumentPricing struct {
 		Type string    `json:"type"`
 		Time time.Time `json:"time"`
 		Bids []struct {
-			Price     float64 `json:"price,string"`
-			Liquidity int     `json:"liquidity"`
+			Price     decimal.Decimal `json:"price,string"`
+			Liquidity int             `json:"liquidity"`
 		} `json:"bids"`
 		Asks []struct {
-			Price     float64 `json:"price,string"`
-			Liquidity int     `json:"liquidity"`
+			Price     decimal.Decimal `json:"price,string"`
+			Liquidity int             `json:"liquidity"`
 		} `json:"asks"`
-		CloseoutBid    float64 `json:"closeoutBid,string"`
-		CloseoutAsk    float64 `json:"closeoutAsk,string"`
-		Status         string  `json:"status"`
-		Tradeable      bool    `json:"tradeable"`
+		CloseoutBid    decimal.Decimal `json:"closeoutBid,string"`
+		CloseoutAsk    decimal.Decimal `json:"closeoutAsk,string"`
+		Status         string          `json:"status"`
+		Tradeable      bool            `json:"tradeable"`
 		UnitsAvailable struct {
 			Default struct {
 				Long  string `json:"long"`

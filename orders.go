@@ -4,6 +4,7 @@ package goanda
 
 import (
 	"encoding/json"
+	"github.com/shopspring/decimal"
 	"time"
 )
 
@@ -19,7 +20,7 @@ type OnFill struct {
 }
 
 type OrderBody struct {
-	Units            int              `json:"units"`
+	Units            decimal.Decimal  `json:"units"`
 	Instrument       string           `json:"instrument"`
 	TimeInForce      string           `json:"timeInForce"`
 	Type             string           `json:"type"`
