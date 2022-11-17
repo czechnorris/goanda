@@ -39,28 +39,11 @@ type AccountInfo struct {
 		PendingOrderCount           int           `json:"pendingOrderCount"`
 		Pl                          string        `json:"pl"`
 		PositionValue               string        `json:"positionValue"`
-		Positions                   []struct {
-			Instrument string `json:"instrument"`
-			Long       struct {
-				Pl           string `json:"pl"`
-				ResettablePL string `json:"resettablePL"`
-				Units        string `json:"units"`
-				UnrealizedPL string `json:"unrealizedPL"`
-			} `json:"long"`
-			Pl           string `json:"pl"`
-			ResettablePL string `json:"resettablePL"`
-			Short        struct {
-				Pl           string `json:"pl"`
-				ResettablePL string `json:"resettablePL"`
-				Units        string `json:"units"`
-				UnrealizedPL string `json:"unrealizedPL"`
-			} `json:"short"`
-			UnrealizedPL string `json:"unrealizedPL"`
-		} `json:"positions"`
-		ResettablePL    string        `json:"resettablePL"`
-		Trades          []interface{} `json:"trades"`
-		UnrealizedPL    string        `json:"unrealizedPL"`
-		WithdrawalLimit string        `json:"withdrawalLimit"`
+		Positions                   []Position    `json:"positions"`
+		ResettablePL                string        `json:"resettablePL"`
+		Trades                      []interface{} `json:"trades"`
+		UnrealizedPL                string        `json:"unrealizedPL"`
+		WithdrawalLimit             string        `json:"withdrawalLimit"`
 	} `json:"account"`
 	LastTransactionID string `json:"lastTransactionID"`
 }
@@ -131,25 +114,9 @@ type AccountChanges struct {
 			Units                string    `json:"units"`
 		} `json:"ordersFilled"`
 		OrdersTriggered []interface{} `json:"ordersTriggered"`
-		Positions       []struct {
-			Instrument string `json:"instrument"`
-			Long       struct {
-				Pl           string `json:"pl"`
-				ResettablePL string `json:"resettablePL"`
-				Units        string `json:"units"`
-			} `json:"long"`
-			Pl           string `json:"pl"`
-			ResettablePL string `json:"resettablePL"`
-			Short        struct {
-				AveragePrice string   `json:"averagePrice"`
-				Pl           string   `json:"pl"`
-				ResettablePL string   `json:"resettablePL"`
-				TradeIDs     []string `json:"tradeIDs"`
-				Units        string   `json:"units"`
-			} `json:"short"`
-		} `json:"positions"`
-		TradesClosed []interface{} `json:"tradesClosed"`
-		TradesOpened []struct {
+		Positions       []Position    `json:"positions"`
+		TradesClosed    []interface{} `json:"tradesClosed"`
+		TradesOpened    []struct {
 			CurrentUnits string    `json:"currentUnits"`
 			Financing    string    `json:"financing"`
 			ID           string    `json:"id"`

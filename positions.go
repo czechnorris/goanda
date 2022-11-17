@@ -5,29 +5,26 @@ import "encoding/json"
 // Supporting OANDA docs - http://developer.oanda.com/rest-live-v20/position-ep/
 
 type OpenPositions struct {
-	LastTransactionID string `json:"lastTransactionID"`
-	Positions         []struct {
-		Instrument string `json:"instrument"`
-		Long       struct {
-			AveragePrice string   `json:"averagePrice"`
-			Pl           string   `json:"pl"`
-			ResettablePL string   `json:"resettablePL"`
-			TradeIDs     []string `json:"tradeIDs"`
-			Units        string   `json:"units"`
-			UnrealizedPL string   `json:"unrealizedPL"`
-		} `json:"long"`
-		Pl           string `json:"pl"`
-		ResettablePL string `json:"resettablePL"`
-		Short        struct {
-			AveragePrice string   `json:"averagePrice"`
-			Pl           string   `json:"pl"`
-			ResettablePL string   `json:"resettablePL"`
-			TradeIDs     []string `json:"tradeIDs"`
-			Units        string   `json:"units"`
-			UnrealizedPL string   `json:"unrealizedPL"`
-		} `json:"short"`
-		UnrealizedPL string `json:"unrealizedPL"`
-	} `json:"positions"`
+	LastTransactionID string     `json:"lastTransactionID"`
+	Positions         []Position `json:"positions"`
+}
+
+type Position struct {
+	Instrument   string       `json:"instrument"`
+	Long         PositionSide `json:"long"`
+	Pl           string       `json:"pl"`
+	ResettablePL string       `json:"resettablePL"`
+	Short        PositionSide `json:"short"`
+	UnrealizedPL string       `json:"unrealizedPL"`
+}
+
+type PositionSide struct {
+	AveragePrice string   `json:"averagePrice"`
+	Pl           string   `json:"pl"`
+	ResettablePL string   `json:"resettablePL"`
+	TradeIDs     []string `json:"tradeIDs"`
+	Units        string   `json:"units"`
+	UnrealizedPL string   `json:"unrealizedPL"`
 }
 
 type ClosePositionPayload struct {
