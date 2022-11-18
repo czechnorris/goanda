@@ -19,17 +19,23 @@ type OnFill struct {
 	Price       string `json:"price,omitempty"` // must be a string for float precision
 }
 
+type TrailingStopLossDetails struct {
+	Distance    decimal.Decimal `json:"distance"`
+	TimeInForce string          `json:"timeInForce,omitempty"`
+}
+
 type OrderBody struct {
-	Units            decimal.Decimal  `json:"units"`
-	Instrument       string           `json:"instrument"`
-	TimeInForce      string           `json:"timeInForce"`
-	Type             string           `json:"type"`
-	PositionFill     string           `json:"positionFill,omitempty"`
-	Price            string           `json:"price,omitempty"`
-	TakeProfitOnFill *OnFill          `json:"takeProfitOnFill,omitempty"`
-	StopLossOnFill   *OnFill          `json:"stopLossOnFill,omitempty"`
-	ClientExtensions *OrderExtensions `json:"clientExtensions,omitempty"`
-	TradeID          string           `json:"tradeId,omitempty"`
+	Units                  decimal.Decimal          `json:"units"`
+	Instrument             string                   `json:"instrument"`
+	TimeInForce            string                   `json:"timeInForce"`
+	Type                   string                   `json:"type"`
+	PositionFill           string                   `json:"positionFill,omitempty"`
+	Price                  string                   `json:"price,omitempty"`
+	TakeProfitOnFill       *OnFill                  `json:"takeProfitOnFill,omitempty"`
+	StopLossOnFill         *OnFill                  `json:"stopLossOnFill,omitempty"`
+	TrailingStopLossOnFill *TrailingStopLossDetails `json:"trailingStopLossOnFill,omitempty"`
+	ClientExtensions       *OrderExtensions         `json:"clientExtensions,omitempty"`
+	TradeID                string                   `json:"tradeId,omitempty"`
 }
 
 type OrderPayload struct {
